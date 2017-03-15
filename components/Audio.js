@@ -24,7 +24,7 @@ class Audio extends Component {
 			num = num.toString()
 			return (num.length < 2) ? ('0' + num) : num;
 		}
-		return setTwo(min) + ' : ' + setTwo(sec)
+		return setTwo(min) + ':' + setTwo(sec)
 	}
 	setTime(time) {
 		const myAudio = this.refs.myAudio
@@ -63,7 +63,7 @@ class Audio extends Component {
 			<div id="audio_container">
 				<audio ref="myAudio" autoPlay src={src}>您的浏览器不支持audio</audio>
 				<Progress duration={duration} currentTime={currentTime} setTime={this.setTime}></Progress>
-				<div>{this._timeFormat(currentTime)}/{this._timeFormat(duration)}</div>
+				<div className="time">{this._timeFormat(currentTime)}/{this._timeFormat(duration)}</div>
 			</div>
 		)
 	}

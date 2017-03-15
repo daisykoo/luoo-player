@@ -17,19 +17,20 @@ class PlayList extends Component {
 		onChange(parseInt(getLi(e.target)))
 	}
 	render() {
-		const {pl} = this.props,
+		const {pl, current} = this.props,
 			self = this
 		return (
 			<div>
 			<ul>
 			{pl.map((n, i, arr) => {
 				return (
-					<li id={'song_' + self._decorateId(i)}
+					<li className="pl_item"
 						data-relid={self._decorateId(i)}
 						key={self._decorateId(i)}
 						onClick={self.selectSong}>
-						<span>{self._decorateId(i+1)} {n.name} </span>
-						<span>{n.artist}</span>
+						{(current.current === i) ? <span className={'current_play ' + ((current.isPlaying) ? 'pause' : null)}></span> : null}
+						<span className="name">{self._decorateId(i+1)}. {n.name} </span>
+						<span className="artist">{n.artist}</span>
 					</li>
 				)
 			})}

@@ -35,7 +35,7 @@ class Audio extends Component {
 				{duration, currentTime} = this.props,
 				progressWidth = (currentTime/duration) * 100 + '%'
 		return (
-			<div ref="wrapper" style={outerStyle} onClick={this.handleClick}>
+			<div id="progress_container" ref="wrapper" style={outerStyle} onClick={this.handleClick}>
 				<div ref="progress" 
 					style={{
 						width: progressWidth, 

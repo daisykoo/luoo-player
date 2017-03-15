@@ -20,17 +20,23 @@ class Song extends Component {
 		const {pl, song, onChange, onToggle} = this.props
 		const item = pl[song.current]
 		return (
-			<div id="song_container">
-				<img src={item.cover}></img>
-				<h1>{item.name}</h1>
-				<h2>{item.artist}</h2>
-				<div id="play_control">
-					<a href="javascript:;" onClick={this.prev}>⬅️</a>
-					<a href="javascript:;" onClick={onToggle}>播放/暂停</a>
-					<a href="javascript:;" onClick={this.next}>➡️</a>
+			<div>
+				<div id="song_container">
+					<img src={item.cover}></img>
+					<div className="msg_wrap">
+						<h1>{item.name}</h1>
+						<h2>Artist: {item.artist}</h2>
+						<h2>Album: {item.album}</h2>
+						<div id="play_control">
+							<a className="prev" href="javascript:;" onClick={this.prev}></a>
+							<a className="play" href="javascript:;" onClick={onToggle} 
+								style={(song.isPlaying)? {backgroundPosition: '-50px -200px'} : null}></a>
+							<a className="next" href="javascript:;" onClick={this.next}></a>
+						</div>
+						<Audio src={item.src} isPlaying={song.isPlaying} onEnd={this.next}></Audio>
+					</div>
 				</div>
-				<Audio src={item.src} isPlaying={song.isPlaying} onEnd={this.next}></Audio>
-				<PlayList pl={pl} onChange={onChange}></PlayList>
+				<PlayList pl={pl} current={song} onChange={onChange}></PlayList>
 			</div>
 		)
 	}
